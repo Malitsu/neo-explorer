@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<h1>Near Earth Object Explorer</h1>
              <form>
+             <p>Retrieve NASA's list of asteroids based on their closest approach date to Earth. Please notice the maximum time interval can be only seven days.</p>
               <p> Starting date: 
                 <input [(ngModel)]="startday" placeholder="day" name="startday" />
                 <input [(ngModel)]="startmonth" placeholder="month" name="startmonth" />
@@ -19,7 +20,8 @@ import { Component } from '@angular/core';
               </p>
              </form>
              <button (click)="findMatches()">Find matches</button>
-             <app-asteroids [startingDate]="startingDate" [endingDate]="endingDate"></app-asteroids>`,
+             <app-asteroids [startingDate]="startingDate" [endingDate]="endingDate" [hazardous]="hazardous">
+             </app-asteroids>`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {

@@ -44,6 +44,8 @@ export class AsteroidsComponent implements OnInit, OnChanges {
 
   @Input() startingDate : string
   @Input() endingDate : string
+  @Input() hazardous : boolean
+
   asteroidsService : AsteroidsService
   asteroids = []
   displayedColumns = ['nameColumn', 'diameterColumn', 'closeColumn', 'orbitColumn', 'missColumn', 'hazardColumn']
@@ -61,7 +63,11 @@ export class AsteroidsComponent implements OnInit, OnChanges {
   ngOnChanges() : void {
     console.log(this.startingDate, this.endingDate)
     this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
-      this.asteroids = result
+      if(this.hazardous) {
+        this.asteroids = result.filter(asteroid => asteroid.is_potentially_hazardous_asteroid)
+      } else {
+        this.asteroids = result
+      }
   })
   }
 

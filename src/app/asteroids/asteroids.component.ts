@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnChanges } from '@angular/core'
 import { AsteroidsService } from './asteroids.service'
 import { Input } from '@angular/core';
 
@@ -40,7 +40,7 @@ import { Input } from '@angular/core';
              </table>`,
   styleUrls: ['./asteroids.component.css']
 })
-export class AsteroidsComponent implements OnInit {
+export class AsteroidsComponent implements OnInit, OnChanges {
 
   @Input() startingDate : string
   @Input() endingDate : string
@@ -55,7 +55,13 @@ export class AsteroidsComponent implements OnInit {
   ngOnInit() : void {
     this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
       this.asteroids = result
-      console.log(result)
+  })
+  }
+
+  ngOnChanges() : void {
+    console.log(this.startingDate, this.endingDate)
+    this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
+      this.asteroids = result
   })
   }
 

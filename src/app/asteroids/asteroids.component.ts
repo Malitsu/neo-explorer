@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges } from '@angular/core'
 import { AsteroidsService } from './asteroids.service'
 import { Input } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
-import { AsteroidsRoutingModule } from './asteroids-routing.module'
 
 @Component({
   selector: 'app-asteroids',

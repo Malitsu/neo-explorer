@@ -20,8 +20,10 @@ import { Component } from '@angular/core';
               </p>
              </form>
              <button (click)="findMatches()">Find matches</button>
+             <router-outlet></router-outlet>
              <app-asteroids [startingDate]="startingDate" [endingDate]="endingDate" [hazardous]="hazardous">
-             </app-asteroids>`,
+             </app-asteroids>
+             `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {

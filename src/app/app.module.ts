@@ -1,24 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
+
 import { AppComponent } from './app.component'
-
-import { FormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table'
-
-import { AsteroidsComponent } from './asteroids/asteroids.component'
-import { AsteroidsService } from './asteroids/asteroids.service'
+import { AppRoutingModule } from './app-routing.module'
+import { AsteroidsModule } from './asteroids/asteroids.module'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AsteroidsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule,
-    MatTableModule
+    AppRoutingModule, AsteroidsModule
   ],
-  providers: [AsteroidsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

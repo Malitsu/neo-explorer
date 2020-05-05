@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 @Injectable()
 export class AsteroidsService {
-  private url : string = 'https://api.nasa.gov/neo/rest/v1/feed?start_date='
+  private asteroidsUrl : string = 'https://api.nasa.gov/neo/rest/v1/feed?start_date='
+  private asteroidUrl : string = 'https://api.nasa.gov/neo/rest/v1/neo/'
   private apiKey : string = '&api_key=qpW7V3khcNm6Ms1PAbg1Hue276UQmLjppplVLdCp'
   private http : HttpClient
 
@@ -12,7 +13,7 @@ export class AsteroidsService {
   }
 
   fetchAsteroids (startingDate : string, endingDate : string, callBackFunction: (result) => void): void {
-    this.http.get<any>(this.url +startingDate +'&end_date=' +endingDate +this.apiKey).subscribe(jsonObject => {
+    this.http.get<any>(this.asteroidsUrl +startingDate +'&end_date=' +endingDate +this.apiKey).subscribe(jsonObject => {
       let answer = []
       for (let key in jsonObject.near_earth_objects) {
         for (let value in jsonObject.near_earth_objects[key]) {
@@ -20,6 +21,12 @@ export class AsteroidsService {
         }
       }
       callBackFunction(answer)
+    }, this.error)
+  }
+
+  fetchAsteroid (id : number, callBackFunction : (result) => void) : void {
+    this.http.get<any>(this.asteroidUrl +id +this.apiKey).subscribe(jsonObject => {
+      callBackFunction(jsonObject)
     }, this.error)
   }
 

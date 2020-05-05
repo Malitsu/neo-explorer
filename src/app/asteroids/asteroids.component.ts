@@ -1,13 +1,19 @@
 import { Component, OnInit, OnChanges } from '@angular/core'
 import { AsteroidsService } from './asteroids.service'
-import { Input } from '@angular/core';
+import { Input } from '@angular/core'
+import { ActivatedRoute, Params } from '@angular/router'
+import { AsteroidsRoutingModule } from './asteroids-routing.module'
 
 @Component({
   selector: 'app-asteroids',
   template: `<table mat-table [dataSource]="asteroids">
                 <ng-container matColumnDef="nameColumn">
                   <th mat-header-cell *matHeaderCellDef> Name </th>
-                  <td mat-cell *matCellDef="let asteroid"> {{asteroid.name}} </td>
+                  <td mat-cell *matCellDef="let asteroid">
+                    <a routerLink="asteroids/{{asteroid.id}}">
+                      {{asteroid.name}}
+                    </a>
+                  </td>
                 </ng-container>
                 <ng-container matColumnDef="diameterColumn">
                   <th mat-header-cell *matHeaderCellDef> Maximum Diameter (km) </th>
@@ -48,20 +54,23 @@ export class AsteroidsComponent implements OnInit, OnChanges {
 
   asteroidsService : AsteroidsService
   asteroids = []
+  selectedId : number
   displayedColumns = ['nameColumn', 'diameterColumn', 'closeColumn', 'orbitColumn', 'missColumn', 'hazardColumn']
 
-  constructor(asteroidsService : AsteroidsService) {
+  constructor(asteroidsService : AsteroidsService, private activatedRoute : ActivatedRoute) {
     this.asteroidsService = asteroidsService
   }
 
   ngOnInit() : void {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.selectedId = params['id'];
+    })
     this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
       this.asteroids = result
   })
   }
 
   ngOnChanges() : void {
-    console.log(this.startingDate, this.endingDate)
     this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
       if(this.hazardous) {
         this.asteroids = result.filter(asteroid => asteroid.is_potentially_hazardous_asteroid)

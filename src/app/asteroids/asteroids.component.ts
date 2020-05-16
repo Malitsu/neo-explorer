@@ -35,7 +35,6 @@ export class AsteroidsComponent implements OnInit, OnChanges {
   asteroidsService : AsteroidsService
   asteroids = []
   sortedAsteroids = []
-  displayedColumns : string[] = ['nameColumn', 'diameterColumn', 'closeColumn', 'orbitColumn', 'missColumn', 'hazardColumn']
   selectedId : number
 
   sortData(sort: Sort) {
@@ -49,19 +48,18 @@ export class AsteroidsComponent implements OnInit, OnChanges {
       const isAsc = sort.direction === 'asc'
       switch (sort.active) {
         case 'name': return this.compare(a.name, b.name, isAsc)
-        case 'diameter': return this.compare(a.diameter, b.diameter, isAsc)
-        case 'approach': return this.compare(a.approach, b.approach, isAsc)
-        case 'orbiting': return this.compare(a.orbiting, b.orbiting, isAsc)
-        case 'distance': return this.compare(a.distance, b.distance, isAsc)
-        case 'hazardous': return this.compare(a.hazardous, b.hazardous, isAsc)
+        case 'diameter': return this.compare(a.estimated_diameter.kilometers.estimated_diameter_max.toFixed(5), b.estimated_diameter.kilometers.estimated_diameter_max.toFixed(5), isAsc)
+        case 'approach': return this.compare(a.close_approach_data[0].close_approach_date, b.close_approach_data[0].close_approach_date, isAsc)
+        case 'orbiting': return this.compare(a.close_approach_data[0].orbiting_body, b.close_approach_data[0].orbiting_body, isAsc)
+        case 'distance': return this.compare(Math.round(a.close_approach_data[0].miss_distance.kilometers), Math.round(b.close_approach_data[0].miss_distance.kilometers), isAsc)
+        case 'hazardous': return this.compare(a.is_potentially_hazardous_asteroid, b.is_potentially_hazardous_asteroid, isAsc)
         default: return 0
       }
     })
   }
 
   compare(a: number | string | boolean, b: number | string | boolean, isAsc: boolean) {
-    return (a < b ? -1 : 1)
-    // * (isAsc ? 1 : -1)
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1)
   }
 
   constructor(asteroidsService : AsteroidsService, private activatedRoute : ActivatedRoute) {

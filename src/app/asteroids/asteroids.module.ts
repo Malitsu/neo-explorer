@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
-import { MatTableModule } from '@angular/material/table'
+import { MatSortModule } from '@angular/material/sort'
 
 import { AsteroidsComponent } from './asteroids.component'
 import { AsteroidDetailComponent } from './asteroid-detail.component'
@@ -19,7 +19,7 @@ import { AsteroidsService } from './asteroids.service'
     CommonModule,
     HttpClientModule,
     AsteroidsRoutingModule,
-    MatTableModule
+    MatSortModule
   ],
   providers: [AsteroidsService]
 })

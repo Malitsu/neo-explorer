@@ -6,22 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Dataset
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  Near Earth Object Explorer is an interface for browsing information offered by NASA's NeoWs (Near Earth Object Web Service). The API is maintained by <a href="https://github.com/SpaceRocks/">SpaceRocks Team</a>. All data can also be found from the home page of <a href="https://cneos.jpl.nasa.gov/">NASA JPL Asteroid team.</a>
 
-## Build
+## Background
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The page was made by Tiina Malinen as a TAMK Business Information Systems 2020 Spring Project for the course New Trends in Software Production, which mainly covered the basics of Angular framework. The code can be found <a href="https://github.com/Malitsu/neo-explorer">here</a>.

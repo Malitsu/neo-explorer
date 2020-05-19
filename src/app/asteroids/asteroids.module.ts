@@ -10,10 +10,11 @@ import { AsteroidDetailComponent } from './asteroid-detail.component'
 import { AsteroidsRoutingModule } from './asteroids-routing.module'
 import { AsteroidsService } from './asteroids.service'
 import { AsteroidsFormComponent } from './asteroids-form.component'
+import { SearchComponent } from './search.component'
 
 @NgModule({
   declarations: [
-    AsteroidsComponent, AsteroidDetailComponent, AsteroidsFormComponent
+    AsteroidsComponent, AsteroidDetailComponent, AsteroidsFormComponent, SearchComponent
   ],
   exports: [
     AsteroidsFormComponent, AsteroidsRoutingModule

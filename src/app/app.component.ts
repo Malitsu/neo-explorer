@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<h1>{{title}}</h1>
              <nav>
-                <a routerLink="/asteroids" routerLinkActive="active">Browse asteroids</a>
+                <a routerLink="/asteroids" routerLinkActive="active">Browse</a>
+                <a routerLink="/search" routerLinkActive="active">Lookup</a>
                 <a routerLink="/info" routerLinkActive="active">Info</a>
              </nav>
              <div>

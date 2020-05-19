@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
-import { AsteroidsModule } from './asteroids/asteroids.module';
+import { AsteroidsModule } from './asteroids/asteroids.module'
 import { NotFoundComponent } from './not-found/not-found.component'
 import { InfoComponent } from './info/info.component'
 

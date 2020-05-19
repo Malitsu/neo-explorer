@@ -1,10 +1,9 @@
 a {
-  background-color: lightblue;
+  background-color: lightgray;
   padding: 10px;
-  color: black;
+  color: white;
   text-decoration: none; 
 }
 .active {
   background-color: orange;
-  color: white;
 }

@@ -16,7 +16,7 @@ import { Sort } from '@angular/material/sort'
                 <th mat-sort-header="hazardous">Potentially Hazardous</th>
                 </tr>
                 <tr *ngFor="let asteroid of asteroids">
-                  <td><a routerLink="asteroids/{{asteroid.id}}">{{asteroid.name}}</a></td>
+                  <td><a routerLink="{{asteroid.id}}">{{asteroid.name}}</a></td>
                   <td>{{asteroid.estimated_diameter.kilometers.estimated_diameter_max}}</td>
                   <td><span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].close_approach_date}}</span></td>
                   <td><span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].orbiting_body}}</span></td>

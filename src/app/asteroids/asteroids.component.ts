@@ -15,13 +15,27 @@ import { Sort } from '@angular/material/sort'
                 <th mat-sort-header="distance">Miss Distance (km)</th>
                 <th mat-sort-header="hazardous">Potentially Hazardous</th>
                 </tr>
-                <tr *ngFor="let asteroid of asteroids">
+                <tr *ngFor="let asteroid of asteroids; let i = index" [class.colored-background]="i%2===1">
                   <td><a routerLink="{{asteroid.id}}">{{asteroid.name}}</a></td>
                   <td>{{asteroid.estimated_diameter.kilometers.estimated_diameter_max}}</td>
-                  <td><span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].close_approach_date}}</span></td>
-                  <td><span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].orbiting_body}}</span></td>
-                  <td><span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].miss_distance.kilometers}}</span></td>
-                  <td>{{asteroid.is_potentially_hazardous_asteroid}}</td>
+                  <td>
+                    <span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].close_approach_date}}</span>
+                    <span *ngIf="!asteroid.close_approach_data[0]"> — </span>
+                  </td>
+                  <td>
+                    <span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].orbiting_body}}</span>
+                    <span *ngIf="!asteroid.close_approach_data[0]"> — </span>
+                  </td>
+                  <td>
+                    <span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].miss_distance.kilometers}}</span>
+                    <span *ngIf="!asteroid.close_approach_data[0]"> — </span>
+                  </td>
+                  <td>
+                    <span [ngSwitch]="asteroid.is_potentially_hazardous_asteroid">
+                      <span *ngSwitchCase="false"> 🙂 </span>
+                      <span *ngSwitchCase="true"> 👹 </span>
+                    </span>
+                  </td>
                 </tr>
               </table>`,
   styleUrls: ['./asteroids.component.css']

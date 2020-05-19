@@ -8,9 +8,15 @@ import { AsteroidsService } from './asteroids.service'
                 <p>Search for a specific asteroid based on it's id.</p>
                 <input [(ngModel)]="id" placeholder="id" name="id" />
              </form>
-             <button (click)="lookup()">Find matches</button>
-             <div><a routerLink="../asteroids/{{asteroid.id}}">{{asteroid.name}}</a></div>`,
-  styles: ['']
+             <p><button (click)="lookup()">Find matches</button></p>
+             <p><a routerLink="../asteroids/{{asteroid.id}}">{{asteroid.name}}</a></p>`,
+  styles: [`a {
+              text-decoration: none;
+              color: orange;
+            }         
+            a:hover {
+              font-weight: bold;
+            }`]
 })
 export class SearchComponent implements OnInit {
 

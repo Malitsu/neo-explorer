@@ -18,7 +18,7 @@ import { Component } from '@angular/core'
                   <input type="checkbox"  [(ngModel)]="hazardous" name="hazardous"/>
                 </p>
               </form>
-              <button (click)="findMatches()">Find matches</button>
+              <p><button (click)="findMatches()">Find matches</button></p>
               <app-asteroids [startingDate]="startingDate" [endingDate]="endingDate" [hazardous]="hazardous">
               </app-asteroids>`,
 styles: []

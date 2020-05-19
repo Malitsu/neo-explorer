@@ -12,8 +12,7 @@ import { AsteroidsService } from './asteroids.service'
                 First observation date: {{asteroid.orbital_data.first_observation_date}}<br/>
                 Last observation date: {{asteroid.orbital_data.last_observation_date}}<br/>
                 Orbit class description: {{asteroid.orbital_data.orbit_class.orbit_class_description}}
-             </p>
-             <button (click)="back()" href="">Back</button>`
+             </p>`
 })
 
 export class AsteroidDetailComponent implements OnInit {
@@ -21,7 +20,6 @@ export class AsteroidDetailComponent implements OnInit {
 
   back() {
     this.router.navigate(['asteroids', {id: this.asteroid.id}])
-    console.log(this.asteroid.id)
   }
 
   constructor(

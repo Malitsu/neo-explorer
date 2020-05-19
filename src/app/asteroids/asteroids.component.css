@@ -4,8 +4,22 @@
 
 table {
   width: 100%;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: orange;
+}
+
+a:hover {
+  font-weight: bold;
 }
 
 th.mat-sort-header-sorted {
   color: black;
+}
+
+.colored-background {
+  background-color: lightgray;
 }

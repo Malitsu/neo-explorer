@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
+import { ChartsModule } from 'ng2-charts'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
@@ -15,7 +16,7 @@ import { InfoComponent } from './info/info.component'
     InfoComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule,
+    BrowserModule, HttpClientModule, ChartsModule,
     AppRoutingModule, AsteroidsModule
   ],
   providers: [],

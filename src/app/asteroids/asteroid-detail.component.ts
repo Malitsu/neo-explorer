@@ -6,12 +6,14 @@ import { AsteroidsService } from './asteroids.service'
   selector: 'app-asteroid-detail',
   template: `<h2>{{asteroid.name}}</h2>
              <p>
-                Estimated diameter max: {{asteroid.estimated_diameter.kilometers.estimated_diameter_max}} kilometers<br/>
-                Estimated diameter min: {{asteroid.estimated_diameter.kilometers.estimated_diameter_min}} kilometers<br/>
-                Close approach time: {{asteroid.close_approach_data[0].close_approach_date_full}}<br/>
-                First observation date: {{asteroid.orbital_data.first_observation_date}}<br/>
-                Last observation date: {{asteroid.orbital_data.last_observation_date}}<br/>
-                Orbit class description: {{asteroid.orbital_data.orbit_class.orbit_class_description}}
+                <b>Estimated diameter max:</b> {{asteroid.estimated_diameter.kilometers.estimated_diameter_max}} kilometers<br/>
+                <b>Estimated diameter min:</b> {{asteroid.estimated_diameter.kilometers.estimated_diameter_min}} kilometers<br/>
+                <b>Close approach time:</b> {{asteroid.close_approach_data[0].close_approach_date_full}}<br/>
+                <b>First observation date:</b> {{asteroid.orbital_data.first_observation_date}}<br/>
+                <b>Last observation date:</b> {{asteroid.orbital_data.last_observation_date}}<br/>
+                <b>Orbit class description:</b> {{asteroid.orbital_data.orbit_class.orbit_class_description}}<br/>
+                <b>Potentially hazardous:</b> {{asteroid.is_potentially_hazardous_asteroid}}<br/>
+                <b>Link:</b> <a href={{asteroid.nasa_jpl_url}}>{{asteroid.nasa_jpl_url}}</a>
              </p>`
 })
 

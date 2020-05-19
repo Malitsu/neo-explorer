@@ -37,7 +37,9 @@ import { Sort } from '@angular/material/sort'
                     </span>
                   </td>
                 </tr>
-              </table>`,
+              </table>
+              <p></p>
+              <app-asteroid-chart [asteroids]="asteroids"></app-asteroid-chart>`,
   styleUrls: ['./asteroids.component.css']
 })
 export class AsteroidsComponent implements OnInit, OnChanges {

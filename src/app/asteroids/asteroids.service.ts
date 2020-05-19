@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 
 @Injectable()
 export class AsteroidsService {
+  private browseUrl : string = 'https://api.nasa.gov/neo/rest/v1/neo/browse'
   private asteroidsUrl : string = 'https://api.nasa.gov/neo/rest/v1/feed?start_date='
   private asteroidUrl : string = 'https://api.nasa.gov/neo/rest/v1/neo/'
   private apiKey : string = 'api_key=qpW7V3khcNm6Ms1PAbg1Hue276UQmLjppplVLdCp'
@@ -10,6 +11,12 @@ export class AsteroidsService {
 
   constructor (http: HttpClient) {
     this.http = http
+  }
+
+  fetchRandom (callBackFunction: (result) => void): void {
+    this.http.get<any>(this.browseUrl +'?' +this.apiKey).subscribe(jsonObject => {
+      callBackFunction(jsonObject.near_earth_objects)
+    }, this.error)
   }
 
   fetchAsteroids (startingDate : string, endingDate : string, callBackFunction: (result) => void): void {

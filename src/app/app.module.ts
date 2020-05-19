@@ -1,18 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
-import { AsteroidsModule } from './asteroids/asteroids.module'
+import { AsteroidsModule } from './asteroids/asteroids.module';
+import { NotFoundComponent } from './not-found/not-found.component'
+import { InfoComponent } from './info/info.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent,
+    InfoComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule,
+    BrowserModule, HttpClientModule,
     AppRoutingModule, AsteroidsModule
   ],
   providers: [],

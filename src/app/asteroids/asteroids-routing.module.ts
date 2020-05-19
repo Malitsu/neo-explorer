@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
-import { AsteroidsComponent } from './asteroids.component'
+import { AsteroidsFormComponent } from './asteroids-form.component'
 import { AsteroidDetailComponent } from './asteroid-detail.component'
 
 const mySubRoutes: Routes = [
-  { path: 'asteroids', component: AsteroidsComponent },
+  { path: 'asteroids', component: AsteroidsFormComponent },
   { path: 'asteroids/:id', component: AsteroidDetailComponent }
 ];
 

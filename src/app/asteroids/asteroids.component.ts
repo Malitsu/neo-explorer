@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild } from '@angular/core'
+import { Component, OnInit, OnChanges } from '@angular/core'
 import { AsteroidsService } from './asteroids.service'
 import { Input } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
@@ -12,10 +12,10 @@ import { Sort } from '@angular/material/sort'
                 <th mat-sort-header="diameter">Maximum Diameter (km)</th>
                 <th mat-sort-header="approach">Close Approach</th>
                 <th mat-sort-header="orbiting">Orbiting Body</th>
-                <th mat-sort-header="distance">Miss Distance</th>
+                <th mat-sort-header="distance">Miss Distance (km)</th>
                 <th mat-sort-header="hazardous">Potentially Hazardous</th>
                 </tr>
-                <tr *ngFor="let asteroid of sortedAsteroids">
+                <tr *ngFor="let asteroid of asteroids">
                   <td><a routerLink="asteroids/{{asteroid.id}}">{{asteroid.name}}</a></td>
                   <td>{{asteroid.estimated_diameter.kilometers.estimated_diameter_max}}</td>
                   <td><span *ngIf="asteroid.close_approach_data[0]">{{asteroid.close_approach_data[0].close_approach_date}}</span></td>
@@ -34,17 +34,17 @@ export class AsteroidsComponent implements OnInit, OnChanges {
 
   asteroidsService : AsteroidsService
   asteroids = []
-  sortedAsteroids = []
+  //sortedAsteroids = []
   selectedId : number
 
   sortData(sort: Sort) {
     const data = this.asteroids.slice();
     if (!sort.active || sort.direction === '') {
-      this.sortedAsteroids = data
+      this.asteroids = data
       return
     }
 
-    this.sortedAsteroids = data.sort((a, b) => {
+    this.asteroids = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc'
       switch (sort.active) {
         case 'name': return this.compare(a.name, b.name, isAsc)
@@ -70,22 +70,33 @@ export class AsteroidsComponent implements OnInit, OnChanges {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.selectedId = params['id'];
     })
-    this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
-      this.asteroids = result
-      this.sortedAsteroids = this.asteroids.slice()
-  })
+    if (typeof this.startingDate === 'undefined') {
+      this.asteroidsService.fetchRandom((result) => {
+        this.asteroids = result
+      })
+    }
+    else {
+      this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
+        this.asteroids = result
+      })
+    }
   }
 
   ngOnChanges() : void {
-    this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
-      if(this.hazardous) {
-        this.asteroids = result.filter(asteroid => asteroid.is_potentially_hazardous_asteroid)
-        this.sortedAsteroids = this.asteroids.slice()
-      } else {
+    if (typeof this.startingDate === 'undefined') {
+      this.asteroidsService.fetchRandom((result) => {
         this.asteroids = result
-        this.sortedAsteroids = this.asteroids.slice()
-      }
-  })
+      })
+    }
+    else {
+      this.asteroidsService.fetchAsteroids(this.startingDate, this.endingDate, (result) => {
+        if(this.hazardous) {
+          this.asteroids = result.filter(asteroid => asteroid.is_potentially_hazardous_asteroid)
+        } else {
+          this.asteroids = result
+        }
+      })
+    }
   }
 
 }
